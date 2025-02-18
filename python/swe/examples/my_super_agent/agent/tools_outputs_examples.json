@@ -1,0 +1,725 @@
+[
+  {
+    "input": {
+      "example": {
+        "git_repo_path": "/Users/Yury.Khudyakov/work/toolformers/python-example-project"
+      },
+      "model": {
+        "git_repo_path": {
+          "annotation": "<class 'str'>",
+          "default": ".",
+          "description": "Relative path to the git repository. Default is current directory.",
+          "required": false
+        }
+      }
+    },
+    "name": "FILETOOL_GIT_REPO_TREE",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": null,
+        "message": "Git repository tree has been generated successfully. Check git_repo_tree.txt in the repository root for the results.",
+        "success": true
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Error message if the action failed",
+          "required": false
+        },
+        "message": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Status message or error description",
+          "required": false
+        },
+        "success": {
+          "annotation": "<class 'bool'>",
+          "default": false,
+          "description": "Whether the tree creation was successful",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {},
+      "model": {}
+    },
+    "name": "FILETOOL_LIST_FILES",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": "",
+        "files": [
+          [
+            "hello_world.py",
+            "file"
+          ],
+          [
+            "git_repo_tree.txt",
+            "file"
+          ],
+          [
+            "calculator_app.py",
+            "file"
+          ],
+          [
+            "README.md",
+            "file"
+          ],
+          [
+            ".cadence",
+            "dir"
+          ],
+          [
+            ".indexing_status.json",
+            "file"
+          ],
+          [
+            ".git",
+            "dir"
+          ],
+          [
+            "new_file.py",
+            "file"
+          ],
+          [
+            ".idea",
+            "dir"
+          ]
+        ]
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Error message if any",
+          "required": false
+        },
+        "files": {
+          "annotation": "typing.List[typing.Tuple[str, str]]",
+          "default": [],
+          "description": "List of files and directories in the workspace",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "file_path": "calculator_app.py",
+        "line_number": 5
+      },
+      "model": {
+        "file_path": {
+          "annotation": "<class 'str'>",
+          "description": "file path to open in the editor. This is a relative path to the current directory",
+          "required": true
+        },
+        "line_number": {
+          "annotation": "<class 'int'>",
+          "default": 0,
+          "description": "If file-number is given, file will be opened from that line number",
+          "required": false
+        }
+      }
+    },
+    "name": "FILETOOL_OPEN_FILE",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": null,
+        "lines": "[File: /Users/Yury.Khudyakov/work/toolformers/python-example-project/calculator_app.py] (58 lines total)]\n(5 line above)\n6 :    # Method for subtraction\n7 :    def subtract(self, a, b):\n8 :        return a - b\n9 :\n10:    # Method for multiplication\n11:    def multiply(self, a, b):\n12:        return a * b\n13:\n14:    # Method for division\n15:    def divide(self, a, b):\n16:        if b == 0:\n17:            return \"Error: Division by zero is undefined.\"\n18:        return a / b\n19:\n20:# super cool comment!\n21:# Main function to interact with the user\n22:def main():\n23:    calc = Calculator()  # Create an instance of the Calculator class\n24:\n25:    print(\"Welcome to the Python Calculator!\")\n26:    print(\"Available operations: + (add), - (subtract), * (multiply), / (divide)\")\n27:\n28:    # Await user input\n29:    operation = input(\"Enter the operation (+, -, *, /): \").strip()\n30:    try:\n31:        num1 = float(input(\"Enter the first number: \"))\n32:        num2 = float(input(\"Enter the second number: \"))\n33:    except ValueError:\n34:        print(\"Error: Please enter valid numeric values.\")\n35:        return\n36:\n37:    # Execute the desired operation\n38:    if operation == '+':\n39:        result = calc.add(num1, num2)\n40:    elif operation == '-':\n41:        result = calc.subtract(num1, num2)\n42:    elif operation == '*':\n43:        result = calc.multiply(num1, num2)\n44:    elif operation == '/':\n45:        result = calc.divide(num1, num2)\n46:    else:\n47:        print(\"Error: Invalid operation entered.\")\n48:        return\n49:\n50:    print(f\"The result is: {result}\")\n51:\n52:\n53:# Run the program\n54:if __name__ == \"__main__\":\n55:    main()\n56:\n57:class_obj:Calculator = cal()\n58:class_obj.\n(0 line below)\n",
+        "message": "File opened successfully. 100 lines after the cursor displayed."
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Error message if the action failed",
+          "required": false
+        },
+        "lines": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "File content with their line numbers",
+          "required": false
+        },
+        "message": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Message to display to the user",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "direction": "down",
+        "lines": 10
+      },
+      "model": {
+        "direction": {
+          "annotation": "<class 'str'>",
+          "default": "down",
+          "description": "The direction to scroll: up/down, by default it's down",
+          "required": false
+        },
+        "lines": {
+          "annotation": "<class 'int'>",
+          "default": 0,
+          "description": "How many lines to scroll by. Choose between 1 to 1000. 1 means scroll by 1 line, 100 means scroll by 100 lines.",
+          "required": false
+        }
+      }
+    },
+    "name": "FILETOOL_SCROLL",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": "",
+        "lines": "[File: /Users/Yury.Khudyakov/work/toolformers/python-example-project/calculator_app.py] (58 lines total)]\n(15 line above)\n16:        if b == 0:\n17:            return \"Error: Division by zero is undefined.\"\n18:        return a / b\n19:\n20:# super cool comment!\n21:# Main function to interact with the user\n22:def main():\n23:    calc = Calculator()  # Create an instance of the Calculator class\n24:\n25:    print(\"Welcome to the Python Calculator!\")\n26:    print(\"Available operations: + (add), - (subtract), * (multiply), / (divide)\")\n27:\n28:    # Await user input\n29:    operation = input(\"Enter the operation (+, -, *, /): \").strip()\n30:    try:\n31:        num1 = float(input(\"Enter the first number: \"))\n32:        num2 = float(input(\"Enter the second number: \"))\n33:    except ValueError:\n34:        print(\"Error: Please enter valid numeric values.\")\n35:        return\n36:\n37:    # Execute the desired operation\n38:    if operation == '+':\n39:        result = calc.add(num1, num2)\n40:    elif operation == '-':\n41:        result = calc.subtract(num1, num2)\n42:    elif operation == '*':\n43:        result = calc.multiply(num1, num2)\n44:    elif operation == '/':\n45:        result = calc.divide(num1, num2)\n46:    else:\n47:        print(\"Error: Invalid operation entered.\")\n48:        return\n49:\n50:    print(f\"The result is: {result}\")\n51:\n52:\n53:# Run the program\n54:if __name__ == \"__main__\":\n55:    main()\n56:\n57:class_obj:Calculator = cal()\n58:class_obj.\n(0 line below)\n",
+        "message": "Scroll successful."
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Error message if any",
+          "required": false
+        },
+        "lines": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "File content with their line numbers",
+          "required": false
+        },
+        "message": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Message to display to the user",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "end_line": 20,
+        "file_path": "calculator_app.py",
+        "start_line": 20,
+        "text": "# super cool comment!"
+      },
+      "model": {
+        "end_line": {
+          "annotation": "typing.Optional[int]",
+          "default": null,
+          "description": "The line number at which the file edit will end (REQUIRED). Inclusive - the end line will be included in the edit. If you just want to add code and not replace any line, don't provide this field.",
+          "required": false
+        },
+        "file_path": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "The path to the file that will be edited. If not provided, THE CURRENTLY OPEN FILE will be edited. If provided, the file at the provided path will be OPENED and edited, changing the opened file.",
+          "required": false
+        },
+        "start_line": {
+          "annotation": "<class 'int'>",
+          "description": "The line number at which the file edit will start (REQUIRED). Inclusive - the start line will be included in the edit. If you just want to add code and not replace any line, don't provide end_line field.",
+          "required": true
+        },
+        "text": {
+          "annotation": "<class 'str'>",
+          "description": "The text that will replace the specified line range in the file.",
+          "required": true
+        }
+      }
+    },
+    "name": "FILETOOL_EDIT_FILE",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": null,
+        "old_text": "[File: /Users/Yury.Khudyakov/work/toolformers/python-example-project/calculator_app.py] (58 lines total)]\n(15 line above)\n16:        if b == 0:\n17:            return \"Error: Division by zero is undefined.\"\n18:        return a / b\n19:\n20:# super cool comment!\n21:# Main function to interact with the user\n22:def main():\n23:    calc = Calculator()  # Create an instance of the Calculator class\n24:\n(34 line below)\n",
+        "updated_text": "[File: /Users/Yury.Khudyakov/work/toolformers/python-example-project/calculator_app.py] (58 lines total)]\n(15 line above)\n16:        if b == 0:\n17:            return \"Error: Division by zero is undefined.\"\n18:        return a / b\n19:\n20:# super cool comment!\n21:# Main function to interact with the user\n22:def main():\n23:    calc = Calculator()  # Create an instance of the Calculator class\n24:\n25:    print(\"Welcome to the Python Calculator!\")\n26:    print(\"Available operations: + (add), - (subtract), * (multiply), / (divide)\")\n(32 line below)\n"
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Error message if any",
+          "required": false
+        },
+        "old_text": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "The updated changes. If the file was not edited, the original file will be returned.",
+          "required": false
+        },
+        "updated_text": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "The updated text. If the file was not edited, this will be empty.",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "is_directory": false,
+        "path": "new_file.py"
+      },
+      "model": {
+        "is_directory": {
+          "annotation": "<class 'bool'>",
+          "default": false,
+          "description": "Whether to create a directory instead of a file",
+          "required": false
+        },
+        "path": {
+          "annotation": "<class 'str'>",
+          "description": "Path to create in the editor.\n        If file/directory already exists, it will be overwritten",
+          "required": true
+        }
+      }
+    },
+    "name": "FILETOOL_CREATE_FILE",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": null,
+        "path": "/Users/Yury.Khudyakov/work/toolformers/python-example-project/new_file.py"
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Error message if the action failed",
+          "required": false
+        },
+        "path": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Path of the created file or directory.",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "case_sensitive": false,
+        "depth": 1,
+        "exclude": [],
+        "include": [],
+        "pattern": ".*py"
+      },
+      "model": {
+        "case_sensitive": {
+          "annotation": "<class 'bool'>",
+          "default": false,
+          "description": "If set True the search will be case sensitive",
+          "required": false
+        },
+        "depth": {
+          "annotation": "typing.Optional[int]",
+          "default": null,
+          "description": "Max depth to search for (None for unlimited)",
+          "required": false
+        },
+        "exclude": {
+          "annotation": "typing.List[str]",
+          "default": null,
+          "description": "List of directories to exclude from the search",
+          "required": false
+        },
+        "include": {
+          "annotation": "typing.List[str]",
+          "default": null,
+          "description": "List of directories to search in",
+          "required": false
+        },
+        "pattern": {
+          "annotation": "<class 'str'>",
+          "description": "Pattern to search for (supports wildcards)",
+          "required": true
+        }
+      }
+    },
+    "name": "FILETOOL_FIND_FILE",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": "No results found.",
+        "message": "",
+        "results": []
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Error message if any",
+          "required": false
+        },
+        "message": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Message to display to the user",
+          "required": false
+        },
+        "results": {
+          "annotation": "typing.List[str]",
+          "default": [],
+          "description": "List of file paths matching the search pattern",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "case_insensitive": true,
+        "exclude": [],
+        "pattern": "*.py",
+        "recursive": true,
+        "word": "calc"
+      },
+      "model": {
+        "case_insensitive": {
+          "annotation": "<class 'bool'>",
+          "default": true,
+          "description": "If True, perform case-insensitive search",
+          "required": false
+        },
+        "exclude": {
+          "annotation": "typing.Optional[typing.List[str]]",
+          "default": null,
+          "description": "List of directories to exclude from the search",
+          "required": false
+        },
+        "pattern": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "The file, directory, or glob pattern to search in.\n        If not provided, searches in the current working directory.\n        Examples:\n        - \"*.py\" : Search in all Python files in the current directory\n        - \"src/*.txt\" : Search in all text files in the 'src' directory\n        - \"**/*.md\" : Search in all Markdown files in the current directory and all subdirectories\n        - \"/path/to/specific/file.js\" : Search in a specific file\n        - \"/path/to/directory\" : Search in all files in a specific directory",
+          "required": false
+        },
+        "recursive": {
+          "annotation": "<class 'bool'>",
+          "default": true,
+          "description": "If True, search recursively in subdirectories",
+          "required": false
+        },
+        "word": {
+          "annotation": "<class 'str'>",
+          "description": "The term to search for",
+          "required": true
+        }
+      }
+    },
+    "name": "FILETOOL_SEARCH_WORD",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": "",
+        "message": "",
+        "results": {
+          "calculator_app.py": [
+            [
+              1,
+              "class Calculator:"
+            ],
+            [
+              23,
+              "calc = Calculator()  # Create an instance of the Calculator class"
+            ],
+            [
+              25,
+              "print(\"Welcome to the Python Calculator!\")"
+            ],
+            [
+              39,
+              "result = calc.add(num1, num2)"
+            ],
+            [
+              41,
+              "result = calc.subtract(num1, num2)"
+            ],
+            [
+              43,
+              "result = calc.multiply(num1, num2)"
+            ],
+            [
+              45,
+              "result = calc.divide(num1, num2)"
+            ],
+            [
+              57,
+              "class_obj:Calculator = cal()"
+            ]
+          ]
+        }
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Error message if any",
+          "required": false
+        },
+        "message": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Message to display to the user",
+          "required": false
+        },
+        "results": {
+          "annotation": "typing.Dict[str, typing.List[typing.Tuple[int, str]]]",
+          "default": {},
+          "description": "A dictionary with file paths as keys and lists of (line number, line content) tuples as values",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "file_path": "new_file.py",
+        "text": "print('Super text!')"
+      },
+      "model": {
+        "file_path": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "The path to the file that will be edited. If not provided, THE CURRENTLY OPEN FILE will be edited. If provided, the file at the provided path will be OPENED and edited, changing the opened file.",
+          "required": false
+        },
+        "text": {
+          "annotation": "<class 'str'>",
+          "description": "The text that will replace the specified line range in the file.",
+          "required": true
+        }
+      }
+    },
+    "name": "FILETOOL_WRITE",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": ""
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Error message if any",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "new_file_paths": [
+          "new_file.py"
+        ]
+      },
+      "model": {
+        "new_file_paths": {
+          "annotation": "typing.List[str]",
+          "default": [],
+          "description": "Paths of the files newly created to be included in the patch.",
+          "required": false
+        }
+      }
+    },
+    "name": "FILETOOL_GIT_PATCH",
+    "output": {
+      "example": {
+        "current_working_directory": "/Users/Yury.Khudyakov/work/toolformers/python-example-project",
+        "error": null,
+        "patch": "diff --git a/calculator_app.py b/calculator_app.py\nindex 5b88fd0..d7d78a4 100644\n--- a/calculator_app.py\n+++ b/calculator_app.py\n@@ -17,7 +17,7 @@ class Calculator:\n             return \"Error: Division by zero is undefined.\"\n         return a / b\n \n-\n+# super cool comment!\n # Main function to interact with the user\n def main():\n     calc = Calculator()  # Create an instance of the Calculator class\n@@ -52,4 +52,7 @@ def main():\n \n # Run the program\n if __name__ == \"__main__\":\n-    main()\n\\ No newline at end of file\n+    main()\n+\n+class_obj:Calculator = cal()\n+class_obj.\n\\ No newline at end of file\ndiff --git a/new_file.py b/new_file.py\nnew file mode 100644\nindex 0000000..e682f70\n--- /dev/null\n+++ b/new_file.py\n@@ -0,0 +1 @@\n+print('Super text!')\n\\ No newline at end of file\n"
+      },
+      "model": {
+        "current_working_directory": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "Current working directory of the file manager.",
+          "required": false
+        },
+        "error": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Error message if the action failed",
+          "required": false
+        },
+        "patch": {
+          "annotation": "<class 'str'>",
+          "default": "",
+          "description": "The generated Git patch",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "class_name": "Calculator"
+      },
+      "model": {
+        "class_name": {
+          "annotation": "<class 'str'>",
+          "description": "Name of the class for which information is requested",
+          "required": true
+        }
+      }
+    },
+    "name": "CODE_ANALYSIS_TOOL_GET_CLASS_INFO",
+    "output": {
+      "example": {
+        "result": "<Total 1 result(s) found:>\n## Details about shortlisted result ID 0:\nClass signature: class Calculator: # Method for addition\nFile where defined: calculator_app.py\nClass full name: calculator_app.Calculator\nFunctions accessible:\n* Signature: def add(self, a, b): | Member of `Calculator` class\n* Signature: def divide(self, a, b): | Member of `Calculator` class\n* Signature: def multiply(self, a, b): | Member of `Calculator` class\n* Signature: def subtract(self, a, b): | Member of `Calculator` class\n\nClass variables accessible:\nNone\nInstance variables accessible:\nNone\nProperties accessible:\nNone\n"
+      },
+      "model": {
+        "result": {
+          "annotation": "<class 'str'>",
+          "description": "Formatted string containing detailed information about the requested class",
+          "required": true
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "class_name": "Calculator",
+        "method_name": "add"
+      },
+      "model": {
+        "class_name": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Name of the class containing the target method",
+          "required": false
+        },
+        "method_name": {
+          "annotation": "<class 'str'>",
+          "description": "Name of the method whose body is to be retrieved",
+          "required": true
+        }
+      }
+    },
+    "name": "CODE_ANALYSIS_TOOL_GET_METHOD_BODY",
+    "output": {
+      "example": {
+        "result": "## Details about shortlisted result ID 0:\nSignature: def add(self, a, b): | Defined in `calculator_app.py` | Member of `Calculator` class\n```python\n3:     def add(self, a, b):\n4:         return a + b\n```"
+      },
+      "model": {
+        "result": {
+          "annotation": "<class 'str'>",
+          "description": "Retrieved method body as a string, including any decorators and comments",
+          "required": true
+        }
+      }
+    }
+  },
+  {
+    "input": {
+      "example": {
+        "class_name": "Calculator",
+        "method_name": "add"
+      },
+      "model": {
+        "class_name": {
+          "annotation": "typing.Optional[str]",
+          "default": null,
+          "description": "Name of the class containing the target method",
+          "required": false
+        },
+        "method_name": {
+          "annotation": "<class 'str'>",
+          "description": "Name of the method whose signature is to be retrieved",
+          "required": true
+        }
+      }
+    },
+    "name": "CODE_ANALYSIS_TOOL_GET_METHOD_SIGNATURE",
+    "output": {
+      "example": {
+        "result": "## Details about shortlisted result ID 0:\nSignature: def add(self, a, b): | Defined in `calculator_app.py` | Member of `Calculator` class"
+      },
+      "model": {
+        "result": {
+          "annotation": "<class 'str'>",
+          "description": "Retrieved method signature as a string, including return type and parameters",
+          "required": true
+        }
+      }
+    }
+  }
+]

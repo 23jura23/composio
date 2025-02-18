@@ -64,30 +64,30 @@ def main() -> None:
     else:
         raise ValueError("No patch generated")
 
-    branch_name = "test-branch-" + str(uuid.uuid4())[:4]
-    git_commands = [
-        f"checkout -b {branch_name}",
-        "add -u",
-        "config --global user.email 'random@gmail.com'",
-        "config --global user.name 'random'",
-        f"commit -m '{issue}'",
-        f"push --set-upstream origin {branch_name}",
-    ]
-    for command in git_commands:
-        composio_toolset.execute_action(
-            action=Action.FILETOOL_GIT_CUSTOM,
-            params={"cmd": command},
-        )
-    composio_toolset.execute_action(
-        action=create_pr,
-        params={
-            "owner": owner,
-            "repo": repo_name,
-            "head": branch_name,
-            "base": "master",
-            "title": "Composio generated PR",
-        },
-    )  
+    # branch_name = "test-branch-" + str(uuid.uuid4())[:4]
+    # git_commands = [
+    #     f"checkout -b {branch_name}",
+    #     "add -u",
+    #     "config --global user.email 'random@gmail.com'",
+    #     "config --global user.name 'random'",
+    #     f"commit -m '{issue}'",
+    #     f"push --set-upstream origin {branch_name}",
+    # ]
+    # for command in git_commands:
+    #     composio_toolset.execute_action(
+    #         action=Action.FILETOOL_GIT_CUSTOM,
+    #         params={"cmd": command},
+    #     )
+    # composio_toolset.execute_action(
+    #     action=create_pr,
+    #     params={
+    #         "owner": owner,
+    #         "repo": repo_name,
+    #         "head": branch_name,
+    #         "base": "master",
+    #         "title": "Composio generated PR",
+    #     },
+    # )
 
     
 
